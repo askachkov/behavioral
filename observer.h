@@ -2,10 +2,10 @@
 
 #include "events.h"
 
-class IObserver
+class IObserverSubject
 {
 public:
-    virtual ~IObserver(){}
+    virtual ~IObserverSubject(){}
     virtual void registerListener(IEventReciever * listener) = 0;
     virtual void notify(const Event & ev) = 0;
 };

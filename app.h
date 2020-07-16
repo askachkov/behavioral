@@ -10,7 +10,7 @@
 
 class App:
     public IMediator,
-    public IObserver
+    public IObserverSubject
 {
 public:
     App();
