@@ -8,7 +8,6 @@ class MapAdapterNode:
     public ANode
 {
     std::map<std::string, double> m_Object;
-    bool m_RetSelf;
     IMediator * m_Mediator;
 public:
     MapAdapterNode( const std::map<std::string, double> & d, IMediator * mediator ):
@@ -59,4 +58,9 @@ public:
     {
         v.handle(*this);
     }
+    virtual std::shared_ptr<INode> clone() override
+	{
+        //do not subscribe it again
+		return std::shared_ptr<INode>(new MapAdapterNode(m_Object, nullptr));
+	}
 };

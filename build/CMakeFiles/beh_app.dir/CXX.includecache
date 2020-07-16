@@ -50,6 +50,10 @@ mediator.h
 observer.h
 /home/alex/private/lessons/behavioral/observer.h
 
+/home/alex/private/lessons/behavioral/clonable.h
+memory
+-
+
 /home/alex/private/lessons/behavioral/config.cpp
 config.h
 /home/alex/private/lessons/behavioral/config.h
@@ -139,6 +143,8 @@ events.h
 /home/alex/private/lessons/behavioral/events.h
 visitor.h
 /home/alex/private/lessons/behavioral/visitor.h
+clonable.h
+/home/alex/private/lessons/behavioral/clonable.h
 
 /home/alex/private/lessons/behavioral/observer.h
 events.h

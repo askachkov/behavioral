@@ -143,3 +143,12 @@ void StateNode::resetSender()
 {
     m_Sender = nullptr;
 }
+
+std::shared_ptr<INode> StateNode::clone()
+{
+    //do not subscribe it again
+    StateNode * ret = new StateNode(nullptr);
+    ret->m_CurrentState = m_CurrentState;
+    ret->m_Sender = m_Sender;
+    return std::shared_ptr<INode>(ret);
+}

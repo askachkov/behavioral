@@ -35,9 +35,10 @@ public:
 class RequestCmd: public ACommand
 {
 public:
-    RequestCmd(App * a, CommandLoop * loop):
+    RequestCmd(App * a, CommandLoop * loop, NodePtr root):
         m_App(a),
-        m_Loop(loop)
+        m_Loop(loop),
+        m_Root(root)
     {
     }
     void trigger() override
@@ -51,6 +52,8 @@ public:
         cout << "4. Visitor" << endl;
         cout << "5. Observer" << endl;
         cout << "6. Mediator" << endl;
+        cout << "7. Save Momemnto" << endl;
+        cout << "8. Draw Momento" << endl;
         cout << "9. Redo last" << endl;
         cin >> var;
         switch ( var ){
@@ -97,6 +100,18 @@ public:
                 group->add(m_App->getRequestCmd());
                 m_Loop->push( CommandPtr(group) );
             } break;
+            case 7: {
+                GroupCmd * group = new GroupCmd();
+                group->add(m_App->getSaveMomCmd());
+                group->add(m_App->getRequestCmd());
+                m_Loop->push( CommandPtr(group) );
+            } break;
+            case 8: {
+                GroupCmd * group = new GroupCmd();
+                group->add(m_App->getDrawMomCmd());
+                group->add(m_App->getRequestCmd());
+                m_Loop->push( CommandPtr(group) );
+            } break;
             case 9: {
                 m_Loop->push( m_App->getRedoLastCmd() );
             } break;
@@ -106,6 +121,7 @@ public:
 private:
     CommandLoop * m_Loop;
     App * m_App;
+    NodePtr m_Root;
 };
 
 class RedoLastCmd: public ICommand
@@ -227,11 +243,67 @@ private:
     MapAdapterNode * m_Node;
 };
 
+class DrawMomentoCmd: public ACommand
+{
+public:
+    DrawMomentoCmd(App * a, IDrawer * d):
+        m_App(a),
+        m_D(d)
+    {
+    }
+    void trigger() override
+    {
+        std::shared_ptr<INode> res = m_App->popMomento();
+        if ( !res ){
+            cout << "Momento: empty history" << endl;
+        } else {
+            res->draw(*m_D);
+        }
+    }
+
+private:
+    App * m_App;
+    IDrawer * m_D;
+};
+
+class SaveMomentoCmd: public ACommand
+{
+public:
+    SaveMomentoCmd(App * a, const NodePtr & root):
+        m_App(a),
+        m_Root(root)
+    {
+    }
+    void trigger() override
+    {
+        m_App->saveMomento(m_Root->clone());
+    }
+
+private:
+    App * m_App;
+    NodePtr m_Root;
+};
+
 App::App():
     m_pFactory(nullptr),
     m_pDrawer(nullptr)
 {
     m_Loop.push( getRequestCmd() );
+}
+
+void App::saveMomento( const std::shared_ptr<INode> & frame )
+{
+    m_Momentos.push(frame);
+}
+
+std::shared_ptr<INode> App::popMomento()
+{
+    std::shared_ptr<INode> res;
+    if ( !m_Momentos.empty() ){
+        res = m_Momentos.top();
+        m_Momentos.pop();
+    }
+    return res;
 }
 
 void App::setFactory(INodeFactory * f)
@@ -283,7 +355,7 @@ void App::prepare()
 
 CommandPtr App::getRequestCmd()
 {
-    return CommandPtr(new RequestCmd(this, &m_Loop));
+    return CommandPtr(new RequestCmd(this, &m_Loop, m_Root));
 }
 
 CommandPtr App::getDrawCmd()
@@ -319,6 +391,16 @@ CommandPtr App::getObserverCmd()
 CommandPtr App::getMediatorCmd()
 {
     return m_MediatorCmd;
+}
+
+CommandPtr App::getSaveMomCmd()
+{
+    return CommandPtr(new SaveMomentoCmd(this, m_Root));
+}
+
+CommandPtr App::getDrawMomCmd()
+{
+    return CommandPtr(new DrawMomentoCmd(this, m_pDrawer));
 }
 
 int App::exec()

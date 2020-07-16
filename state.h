@@ -34,4 +34,5 @@ public:
     void onEvent(const Event & e) override;
     virtual void acceptVisitor(Visitor & v) override;
     void resetSender();
+    virtual std::shared_ptr<INode> clone() override;
 };

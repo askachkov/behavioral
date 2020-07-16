@@ -71,6 +71,16 @@ void Node::draw(IDrawer & d)
     }
 }
 
+std::shared_ptr<INode> Node::clone()
+{
+    Node * res = new Node();
+    for ( size_t i = 0; i < m_Children.size(); ++i ){
+        res->add(m_Children[i]->clone());
+    }
+    res->m_Id = m_Id;
+    return std::shared_ptr<INode>(res);
+}
+
 KeyValueNode::KeyValueNode(const StringPtr & key, const NodePtr & value):
     m_Key(key),
     m_Value(value),
@@ -127,4 +137,12 @@ void KeyValueNode::onEvent(const Event & e)
 void KeyValueNode::acceptVisitor(Visitor & v)
 {
     m_Value->acceptVisitor(v);
+}
+
+std::shared_ptr<INode> KeyValueNode::clone()
+{
+    StringPtr key = dynamic_pointer_cast<StringNode>(m_Key->clone());
+    KeyValueNode * res = new KeyValueNode(key, m_Value->clone());
+    res->m_RetState = m_RetState;
+    return std::shared_ptr<INode>(res);
 }

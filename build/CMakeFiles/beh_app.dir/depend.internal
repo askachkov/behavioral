@@ -9,6 +9,7 @@ CMakeFiles/beh_app.dir/app.cpp.o
  /home/alex/private/lessons/behavioral/adapter.h
  /home/alex/private/lessons/behavioral/app.cpp
  /home/alex/private/lessons/behavioral/app.h
+ /home/alex/private/lessons/behavioral/clonable.h
  /home/alex/private/lessons/behavioral/config.h
  /home/alex/private/lessons/behavioral/drawer.h
  /home/alex/private/lessons/behavioral/events.h
@@ -25,6 +26,7 @@ CMakeFiles/beh_app.dir/drawer.cpp.o
  /home/alex/private/lessons/behavioral/drawer.cpp
  /home/alex/private/lessons/behavioral/drawer.h
 CMakeFiles/beh_app.dir/factory.cpp.o
+ /home/alex/private/lessons/behavioral/clonable.h
  /home/alex/private/lessons/behavioral/drawer.h
  /home/alex/private/lessons/behavioral/events.h
  /home/alex/private/lessons/behavioral/factory.cpp
@@ -35,6 +37,7 @@ CMakeFiles/beh_app.dir/factory.cpp.o
  /home/alex/private/lessons/behavioral/state.h
  /home/alex/private/lessons/behavioral/visitor.h
 CMakeFiles/beh_app.dir/flyweight.cpp.o
+ /home/alex/private/lessons/behavioral/clonable.h
  /home/alex/private/lessons/behavioral/drawer.h
  /home/alex/private/lessons/behavioral/events.h
  /home/alex/private/lessons/behavioral/factory.h
@@ -47,6 +50,7 @@ CMakeFiles/beh_app.dir/main.cpp.o
  /home/alex/private/lessons/behavioral/action.h
  /home/alex/private/lessons/behavioral/adapter.h
  /home/alex/private/lessons/behavioral/app.h
+ /home/alex/private/lessons/behavioral/clonable.h
  /home/alex/private/lessons/behavioral/config.h
  /home/alex/private/lessons/behavioral/drawer.h
  /home/alex/private/lessons/behavioral/events.h
@@ -59,6 +63,7 @@ CMakeFiles/beh_app.dir/main.cpp.o
  /home/alex/private/lessons/behavioral/observer.h
  /home/alex/private/lessons/behavioral/visitor.h
 CMakeFiles/beh_app.dir/node.cpp.o
+ /home/alex/private/lessons/behavioral/clonable.h
  /home/alex/private/lessons/behavioral/drawer.h
  /home/alex/private/lessons/behavioral/events.h
  /home/alex/private/lessons/behavioral/iterable.h
@@ -66,6 +71,7 @@ CMakeFiles/beh_app.dir/node.cpp.o
  /home/alex/private/lessons/behavioral/node.h
  /home/alex/private/lessons/behavioral/visitor.h
 CMakeFiles/beh_app.dir/state.cpp.o
+ /home/alex/private/lessons/behavioral/clonable.h
  /home/alex/private/lessons/behavioral/drawer.h
  /home/alex/private/lessons/behavioral/events.h
  /home/alex/private/lessons/behavioral/iterable.h
@@ -76,6 +82,7 @@ CMakeFiles/beh_app.dir/state.cpp.o
  /home/alex/private/lessons/behavioral/visitor.h
 CMakeFiles/beh_app.dir/visitor.cpp.o
  /home/alex/private/lessons/behavioral/adapter.h
+ /home/alex/private/lessons/behavioral/clonable.h
  /home/alex/private/lessons/behavioral/drawer.h
  /home/alex/private/lessons/behavioral/events.h
  /home/alex/private/lessons/behavioral/iterable.h

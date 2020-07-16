@@ -6,11 +6,13 @@
 #include "iterable.h"
 #include "events.h"
 #include "visitor.h"
+#include "clonable.h"
 
 class INode:
 	public Iterable<INode>,
 	public IEventReciever,
-	public IVisitorReciever
+	public IVisitorReciever,
+	public IClonable<INode>
 {
 public:
 	virtual ~INode(){}
@@ -53,6 +55,7 @@ public:
 	virtual void resetIteratorCounter() override;
 	virtual void onEvent(const Event & e) override;
 	virtual void acceptVisitor(Visitor & v) override;
+	virtual std::shared_ptr<INode> clone() override;
 
 private:
 	NodeList m_Children;
@@ -91,6 +94,10 @@ public:
 	{
 		m_Node->acceptVisitor(v);
 	}
+	virtual std::shared_ptr<INode> clone() override
+	{
+		return std::shared_ptr<INode>(new WrapperNode<open, close>( m_Node->clone() ));
+	}
 };
 
 template<typename Value>
@@ -106,6 +113,10 @@ public:
 	void draw(IDrawer & d) override
 	{
 		d.draw(m_Value);
+	}
+	virtual std::shared_ptr<INode> clone() override
+	{
+		return std::shared_ptr<INode>(new ValueNode<Value>(m_Value));
 	}
 };
 
@@ -129,6 +140,7 @@ public:
 	virtual void resetIteratorCounter() override;
 	virtual void onEvent(const Event & e) override;
 	virtual void acceptVisitor(Visitor & v) override;
+	virtual std::shared_ptr<INode> clone() override;
 
 private:
 	enum RetState { Child, End };
@@ -167,5 +179,13 @@ public:
 	virtual void acceptVisitor(Visitor & v) override
 	{
 		get()->acceptVisitor(v);
+	}
+	virtual std::shared_ptr<INode> clone() override
+	{
+		ProxyNode<Node, ValueType, value> * proxy = new ProxyNode<Node, ValueType, value>();
+		if ( m_Data ){
+			proxy->m_Data = m_Data->clone();
+		}
+		return std::shared_ptr<INode>(proxy);
 	}
 };

@@ -8,6 +8,7 @@ CMakeFiles/beh_app.dir/app.cpp.o: ../action.h
 CMakeFiles/beh_app.dir/app.cpp.o: ../adapter.h
 CMakeFiles/beh_app.dir/app.cpp.o: ../app.cpp
 CMakeFiles/beh_app.dir/app.cpp.o: ../app.h
+CMakeFiles/beh_app.dir/app.cpp.o: ../clonable.h
 CMakeFiles/beh_app.dir/app.cpp.o: ../config.h
 CMakeFiles/beh_app.dir/app.cpp.o: ../drawer.h
 CMakeFiles/beh_app.dir/app.cpp.o: ../events.h
@@ -24,6 +25,7 @@ CMakeFiles/beh_app.dir/config.cpp.o: ../config.h
 CMakeFiles/beh_app.dir/drawer.cpp.o: ../drawer.cpp
 CMakeFiles/beh_app.dir/drawer.cpp.o: ../drawer.h
 
+CMakeFiles/beh_app.dir/factory.cpp.o: ../clonable.h
 CMakeFiles/beh_app.dir/factory.cpp.o: ../drawer.h
 CMakeFiles/beh_app.dir/factory.cpp.o: ../events.h
 CMakeFiles/beh_app.dir/factory.cpp.o: ../factory.cpp
@@ -34,6 +36,7 @@ CMakeFiles/beh_app.dir/factory.cpp.o: ../node.h
 CMakeFiles/beh_app.dir/factory.cpp.o: ../state.h
 CMakeFiles/beh_app.dir/factory.cpp.o: ../visitor.h
 
+CMakeFiles/beh_app.dir/flyweight.cpp.o: ../clonable.h
 CMakeFiles/beh_app.dir/flyweight.cpp.o: ../drawer.h
 CMakeFiles/beh_app.dir/flyweight.cpp.o: ../events.h
 CMakeFiles/beh_app.dir/flyweight.cpp.o: ../factory.h
@@ -46,6 +49,7 @@ CMakeFiles/beh_app.dir/flyweight.cpp.o: ../visitor.h
 CMakeFiles/beh_app.dir/main.cpp.o: ../action.h
 CMakeFiles/beh_app.dir/main.cpp.o: ../adapter.h
 CMakeFiles/beh_app.dir/main.cpp.o: ../app.h
+CMakeFiles/beh_app.dir/main.cpp.o: ../clonable.h
 CMakeFiles/beh_app.dir/main.cpp.o: ../config.h
 CMakeFiles/beh_app.dir/main.cpp.o: ../drawer.h
 CMakeFiles/beh_app.dir/main.cpp.o: ../events.h
@@ -58,6 +62,7 @@ CMakeFiles/beh_app.dir/main.cpp.o: ../node.h
 CMakeFiles/beh_app.dir/main.cpp.o: ../observer.h
 CMakeFiles/beh_app.dir/main.cpp.o: ../visitor.h
 
+CMakeFiles/beh_app.dir/node.cpp.o: ../clonable.h
 CMakeFiles/beh_app.dir/node.cpp.o: ../drawer.h
 CMakeFiles/beh_app.dir/node.cpp.o: ../events.h
 CMakeFiles/beh_app.dir/node.cpp.o: ../iterable.h
@@ -65,6 +70,7 @@ CMakeFiles/beh_app.dir/node.cpp.o: ../node.cpp
 CMakeFiles/beh_app.dir/node.cpp.o: ../node.h
 CMakeFiles/beh_app.dir/node.cpp.o: ../visitor.h
 
+CMakeFiles/beh_app.dir/state.cpp.o: ../clonable.h
 CMakeFiles/beh_app.dir/state.cpp.o: ../drawer.h
 CMakeFiles/beh_app.dir/state.cpp.o: ../events.h
 CMakeFiles/beh_app.dir/state.cpp.o: ../iterable.h
@@ -75,6 +81,7 @@ CMakeFiles/beh_app.dir/state.cpp.o: ../state.h
 CMakeFiles/beh_app.dir/state.cpp.o: ../visitor.h
 
 CMakeFiles/beh_app.dir/visitor.cpp.o: ../adapter.h
+CMakeFiles/beh_app.dir/visitor.cpp.o: ../clonable.h
 CMakeFiles/beh_app.dir/visitor.cpp.o: ../drawer.h
 CMakeFiles/beh_app.dir/visitor.cpp.o: ../events.h
 CMakeFiles/beh_app.dir/visitor.cpp.o: ../iterable.h
