@@ -14,7 +14,9 @@ CMakeFiles/beh_app.dir/app.cpp.o
  /home/alex/private/lessons/behavioral/events.h
  /home/alex/private/lessons/behavioral/factory.h
  /home/alex/private/lessons/behavioral/iterable.h
+ /home/alex/private/lessons/behavioral/mediator.h
  /home/alex/private/lessons/behavioral/node.h
+ /home/alex/private/lessons/behavioral/observer.h
  /home/alex/private/lessons/behavioral/visitor.h
 CMakeFiles/beh_app.dir/config.cpp.o
  /home/alex/private/lessons/behavioral/config.cpp
@@ -28,6 +30,7 @@ CMakeFiles/beh_app.dir/factory.cpp.o
  /home/alex/private/lessons/behavioral/factory.cpp
  /home/alex/private/lessons/behavioral/factory.h
  /home/alex/private/lessons/behavioral/iterable.h
+ /home/alex/private/lessons/behavioral/mediator.h
  /home/alex/private/lessons/behavioral/node.h
  /home/alex/private/lessons/behavioral/state.h
  /home/alex/private/lessons/behavioral/visitor.h
@@ -51,7 +54,9 @@ CMakeFiles/beh_app.dir/main.cpp.o
  /home/alex/private/lessons/behavioral/flyweight.h
  /home/alex/private/lessons/behavioral/iterable.h
  /home/alex/private/lessons/behavioral/main.cpp
+ /home/alex/private/lessons/behavioral/mediator.h
  /home/alex/private/lessons/behavioral/node.h
+ /home/alex/private/lessons/behavioral/observer.h
  /home/alex/private/lessons/behavioral/visitor.h
 CMakeFiles/beh_app.dir/node.cpp.o
  /home/alex/private/lessons/behavioral/drawer.h
@@ -64,6 +69,7 @@ CMakeFiles/beh_app.dir/state.cpp.o
  /home/alex/private/lessons/behavioral/drawer.h
  /home/alex/private/lessons/behavioral/events.h
  /home/alex/private/lessons/behavioral/iterable.h
+ /home/alex/private/lessons/behavioral/mediator.h
  /home/alex/private/lessons/behavioral/node.h
  /home/alex/private/lessons/behavioral/state.cpp
  /home/alex/private/lessons/behavioral/state.h
@@ -73,6 +79,7 @@ CMakeFiles/beh_app.dir/visitor.cpp.o
  /home/alex/private/lessons/behavioral/drawer.h
  /home/alex/private/lessons/behavioral/events.h
  /home/alex/private/lessons/behavioral/iterable.h
+ /home/alex/private/lessons/behavioral/mediator.h
  /home/alex/private/lessons/behavioral/node.h
  /home/alex/private/lessons/behavioral/state.h
  /home/alex/private/lessons/behavioral/visitor.cpp

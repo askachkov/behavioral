@@ -1,6 +1,7 @@
 #pragma once
 
 #include "node.h"
+#include "mediator.h"
 #include <map>
 
 class MapAdapterNode:
@@ -8,10 +9,15 @@ class MapAdapterNode:
 {
     std::map<std::string, double> m_Object;
     bool m_RetSelf;
+    IMediator * m_Mediator;
 public:
-    MapAdapterNode( const std::map<std::string, double> & d ):
-        m_Object(d)
+    MapAdapterNode( const std::map<std::string, double> & d, IMediator * mediator ):
+        m_Object(d),
+        m_Mediator(mediator)
     {
+        if ( m_Mediator != nullptr ){
+            m_Mediator->registerMediatorListener(this);
+        }
     }
     void draw(IDrawer & d) override
     {
@@ -39,6 +45,14 @@ public:
         auto it = m_Object.find(key);
         if ( it != m_Object.end() ){
             m_Object.erase(it);
+        }
+    }
+    void notifyAboutEvent()
+    {
+        if ( m_Mediator != nullptr ){
+            Event ev = { "mediatorEv", 33.7, this };
+            //should not be recieved by this item
+            m_Mediator->send(ev);
         }
     }
     virtual void acceptVisitor(Visitor & v) override

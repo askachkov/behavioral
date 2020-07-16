@@ -2,10 +2,13 @@
 
 #include <string>
 
+class IEventReciever;
+
 struct Event
 {
     std::string type;
     double data;
+    IEventReciever * sender;
 };
 
 class IEventReciever

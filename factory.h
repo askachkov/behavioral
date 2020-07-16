@@ -2,6 +2,8 @@
 
 #include "node.h"
 
+class IMediator;
+
 class INodeFactory
 {
 public:
@@ -12,7 +14,7 @@ public:
 	virtual std::shared_ptr<Node> createGroup() = 0;
 	virtual std::shared_ptr<INode> createArr(const std::shared_ptr<Node> & inner) = 0;
 	virtual std::shared_ptr<INode> createObj(const std::shared_ptr<Node> & inner) = 0;
-	virtual std::shared_ptr<INode> createState() = 0;
+	virtual std::shared_ptr<INode> createState(IMediator * mediator) = 0;
 };
 
 class Factory: public INodeFactory
@@ -25,5 +27,5 @@ public:
 	virtual std::shared_ptr<Node> createGroup();
 	virtual std::shared_ptr<INode> createArr(const std::shared_ptr<Node> & inner);
 	virtual std::shared_ptr<INode> createObj(const std::shared_ptr<Node> & inner);
-	virtual std::shared_ptr<INode> createState();
+	virtual std::shared_ptr<INode> createState(IMediator * mediator);
 };

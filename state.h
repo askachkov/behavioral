@@ -1,6 +1,7 @@
 #pragma once
 
 #include "node.h"
+#include "mediator.h"
 
 enum StateType
 {
@@ -25,9 +26,12 @@ class StateNode:
     typedef std::shared_ptr<IState> StatePtr;
 	StateType m_CurrentState;
     StatePtr m_States[4];
+    IEventReciever * m_Sender;
+    IMediator * m_Mediator;
 public:
-    StateNode();
+    StateNode(IMediator * mediator);
 	void draw(IDrawer & d) override;
     void onEvent(const Event & e) override;
     virtual void acceptVisitor(Visitor & v) override;
+    void resetSender();
 };

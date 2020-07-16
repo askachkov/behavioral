@@ -37,7 +37,7 @@ Factory::~Factory()
 {
 }
 
-std::shared_ptr<INode> Factory::createState()
+std::shared_ptr<INode> Factory::createState(IMediator * mediator)
 {
-    return std::shared_ptr<INode>(new StateNode());
+    return std::shared_ptr<INode>(new StateNode(mediator));
 }

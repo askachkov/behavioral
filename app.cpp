@@ -49,6 +49,8 @@ public:
         cout << "2. Event 50.1" << endl;
         cout << "3. Event 49.3" << endl;
         cout << "4. Visitor" << endl;
+        cout << "5. Observer" << endl;
+        cout << "6. Mediator" << endl;
         cout << "9. Redo last" << endl;
         cin >> var;
         switch ( var ){
@@ -77,6 +79,20 @@ public:
             case 4: {
                 GroupCmd * group = new GroupCmd();
                 group->add(m_App->getVisitorCmd());
+                group->add(m_App->getDrawCmd());
+                group->add(m_App->getRequestCmd());
+                m_Loop->push( CommandPtr(group) );
+            } break;
+            case 5: {
+                GroupCmd * group = new GroupCmd();
+                group->add(m_App->getObserverCmd());
+                group->add(m_App->getDrawCmd());
+                group->add(m_App->getRequestCmd());
+                m_Loop->push( CommandPtr(group) );
+            } break;
+            case 6: {
+                GroupCmd * group = new GroupCmd();
+                group->add(m_App->getMediatorCmd());
                 group->add(m_App->getDrawCmd());
                 group->add(m_App->getRequestCmd());
                 m_Loop->push( CommandPtr(group) );
@@ -147,6 +163,8 @@ public:
         Event ev;
         ev.type = "event";
         ev.data = m_Value;
+        //broadcast
+        ev.sender = nullptr;
         m_Root->onEvent(ev);
     }
 
@@ -170,6 +188,43 @@ public:
 
 private:
     NodePtr m_Root;
+};
+
+class ObserverCmd: public ACommand
+{
+public:
+    ObserverCmd(App * a):
+        m_App(a)
+    {
+    }
+    void trigger() override
+    {
+        Event ev;
+        ev.type = "observer";
+        ev.data = 90;
+        //broadcast
+        ev.sender = nullptr;
+        m_App->notify(ev);
+    }
+
+private:
+    App * m_App;
+};
+
+class MediatorCmd: public ACommand
+{
+public:
+    MediatorCmd(MapAdapterNode * node):
+        m_Node(node)
+    {
+    }
+    void trigger() override
+    {
+        m_Node->notifyAboutEvent();
+    }
+
+private:
+    MapAdapterNode * m_Node;
 };
 
 App::App():
@@ -203,8 +258,13 @@ void App::prepare()
 	mapObject["depth"] = 2.2;
 
 	std::shared_ptr<Node> obj = m_pFactory->createGroup();
-    obj->add(m_pFactory->createPair("disp", m_pFactory->createState()) );
-	obj->add(m_pFactory->createPair("params", NodePtr(new MapAdapterNode(mapObject))) );
+    obj->add(m_pFactory->createPair("disp", m_pFactory->createState(this)) );
+
+    MapAdapterNode * mapNode = new MapAdapterNode(mapObject, this);
+    m_MediatorCmd = CommandPtr(new MediatorCmd(mapNode));
+    registerListener(mapNode);
+
+	obj->add(m_pFactory->createPair("params", NodePtr(mapNode)) );
 	obj->add(m_pFactory->createPair("key1", m_pFactory->createString("big data")));
 	obj->add(m_pFactory->createPair("key2", m_pFactory->createString("big data")));
 	obj->add(m_pFactory->createPair("key3", m_pFactory->createString("big data 2")));
@@ -251,8 +311,44 @@ CommandPtr App::getVisitorCmd()
     return CommandPtr( new VisitorCmd( m_Root ) );
 }
 
+CommandPtr App::getObserverCmd()
+{
+    return CommandPtr(new ObserverCmd(this));
+}
+
+CommandPtr App::getMediatorCmd()
+{
+    return m_MediatorCmd;
+}
+
 int App::exec()
 {
     m_Loop.exec();
     return 0;
+}
+
+void App::send(const Event & ev)
+{
+    for ( IEventReciever * client : m_MediatorClients ){
+        if ( ev.sender != client ){
+            client->onEvent(ev);
+        }
+    }
+}
+
+void App::notify(const Event & ev)
+{
+    for ( IEventReciever * client : m_ObserverListeners ){
+        client->onEvent(ev);
+    }
+}
+
+void App::registerListener(IEventReciever * listener)
+{
+    m_ObserverListeners.push_back(listener);
+}
+
+void App::registerMediatorListener(IEventReciever * l)
+{
+    m_MediatorClients.push_back(l);
 }

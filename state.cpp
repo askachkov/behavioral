@@ -99,8 +99,13 @@ public:
     }
 };
 
-StateNode::StateNode()
+StateNode::StateNode(IMediator * mediator):
+    m_Sender(nullptr),
+    m_Mediator(mediator)
 {
+    if ( m_Mediator != nullptr ){
+        m_Mediator->registerMediatorListener(this);
+    }
     m_CurrentState = State_Idle;
     m_States[State_Idle] = StatePtr(new IdleState);
     m_States[State_Init] = StatePtr(new InitState);
@@ -112,10 +117,16 @@ void StateNode::draw(IDrawer & d)
 {
     m_CurrentState = m_States[m_CurrentState]->prepare();
     m_States[m_CurrentState]->draw(d);
+    if ( m_Sender == nullptr ){
+        d.draw(",\"mediator\":\"no-events\"");
+    } else {
+        d.draw(",\"mediator\":\"communication established!\"");
+    }
 }
 
 void StateNode::onEvent(const Event & e)
 {
+    m_Sender = e.sender;
     m_States[m_CurrentState]->onEvent(e);
     m_States[State_Idle]->onEvent(e);
     m_States[State_Init]->onEvent(e);
@@ -126,4 +137,9 @@ void StateNode::onEvent(const Event & e)
 void StateNode::acceptVisitor(Visitor & v)
 {
     v.handle(*this);
+}
+
+void StateNode::resetSender()
+{
+    m_Sender = nullptr;
 }

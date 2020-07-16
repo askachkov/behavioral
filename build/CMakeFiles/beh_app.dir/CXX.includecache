@@ -21,6 +21,8 @@ memory
 /home/alex/private/lessons/behavioral/adapter.h
 node.h
 /home/alex/private/lessons/behavioral/node.h
+mediator.h
+/home/alex/private/lessons/behavioral/mediator.h
 map
 -
 
@@ -43,6 +45,10 @@ adapter.h
 /home/alex/private/lessons/behavioral/adapter.h
 action.h
 /home/alex/private/lessons/behavioral/action.h
+mediator.h
+/home/alex/private/lessons/behavioral/mediator.h
+observer.h
+/home/alex/private/lessons/behavioral/observer.h
 
 /home/alex/private/lessons/behavioral/config.cpp
 config.h
@@ -108,6 +114,12 @@ app.h
 config.h
 /home/alex/private/lessons/behavioral/config.h
 
+/home/alex/private/lessons/behavioral/mediator.h
+string
+-
+events.h
+/home/alex/private/lessons/behavioral/events.h
+
 /home/alex/private/lessons/behavioral/node.cpp
 node.h
 /home/alex/private/lessons/behavioral/node.h
@@ -128,6 +140,10 @@ events.h
 visitor.h
 /home/alex/private/lessons/behavioral/visitor.h
 
+/home/alex/private/lessons/behavioral/observer.h
+events.h
+/home/alex/private/lessons/behavioral/events.h
+
 /home/alex/private/lessons/behavioral/state.cpp
 state.h
 /home/alex/private/lessons/behavioral/state.h
@@ -137,6 +153,8 @@ chrono
 /home/alex/private/lessons/behavioral/state.h
 node.h
 /home/alex/private/lessons/behavioral/node.h
+mediator.h
+/home/alex/private/lessons/behavioral/mediator.h
 
 /home/alex/private/lessons/behavioral/visitor.cpp
 visitor.h
