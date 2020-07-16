@@ -27,11 +27,11 @@ public:
     CommandPtr getVisitorCmd();
     CommandPtr getObserverCmd();
     CommandPtr getMediatorCmd();
-    CommandPtr getSaveMomCmd();
-    CommandPtr getDrawMomCmd();
+    CommandPtr getSaveMemCmd();
+    CommandPtr getDrawMemCmd();
 
-    void saveMomento( const std::shared_ptr<INode> & frame );
-    std::shared_ptr<INode> popMomento();
+    void saveMemento( const std::shared_ptr<INode> & frame );
+    std::shared_ptr<INode> popMemento();
 
     //IMediator
     virtual void send(const Event & ev) override;
@@ -50,5 +50,5 @@ private:
     std::vector<IEventReciever*> m_MediatorClients;
     std::vector<IEventReciever*> m_ObserverListeners;
 
-    std::stack< std::shared_ptr<INode> > m_Momentos;
+    std::stack< std::shared_ptr<INode> > m_Mementos;
 };

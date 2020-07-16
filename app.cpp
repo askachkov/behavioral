@@ -52,8 +52,8 @@ public:
         cout << "4. Visitor" << endl;
         cout << "5. Observer" << endl;
         cout << "6. Mediator" << endl;
-        cout << "7. Save Momemnto" << endl;
-        cout << "8. Draw Momento" << endl;
+        cout << "7. Save Memento" << endl;
+        cout << "8. Draw Memento" << endl;
         cout << "9. Redo last" << endl;
         cin >> var;
         switch ( var ){
@@ -102,13 +102,13 @@ public:
             } break;
             case 7: {
                 GroupCmd * group = new GroupCmd();
-                group->add(m_App->getSaveMomCmd());
+                group->add(m_App->getSaveMemCmd());
                 group->add(m_App->getRequestCmd());
                 m_Loop->push( CommandPtr(group) );
             } break;
             case 8: {
                 GroupCmd * group = new GroupCmd();
-                group->add(m_App->getDrawMomCmd());
+                group->add(m_App->getDrawMemCmd());
                 group->add(m_App->getRequestCmd());
                 m_Loop->push( CommandPtr(group) );
             } break;
@@ -253,7 +253,7 @@ public:
     }
     void trigger() override
     {
-        std::shared_ptr<INode> res = m_App->popMomento();
+        std::shared_ptr<INode> res = m_App->popMemento();
         if ( !res ){
             cout << "Momento: empty history" << endl;
         } else {
@@ -276,7 +276,7 @@ public:
     }
     void trigger() override
     {
-        m_App->saveMomento(m_Root->clone());
+        m_App->saveMemento(m_Root->clone());
     }
 
 private:
@@ -291,17 +291,17 @@ App::App():
     m_Loop.push( getRequestCmd() );
 }
 
-void App::saveMomento( const std::shared_ptr<INode> & frame )
+void App::saveMemento( const std::shared_ptr<INode> & frame )
 {
-    m_Momentos.push(frame);
+    m_Mementos.push(frame);
 }
 
-std::shared_ptr<INode> App::popMomento()
+std::shared_ptr<INode> App::popMemento()
 {
     std::shared_ptr<INode> res;
-    if ( !m_Momentos.empty() ){
-        res = m_Momentos.top();
-        m_Momentos.pop();
+    if ( !m_Mementos.empty() ){
+        res = m_Mementos.top();
+        m_Mementos.pop();
     }
     return res;
 }
@@ -393,12 +393,12 @@ CommandPtr App::getMediatorCmd()
     return m_MediatorCmd;
 }
 
-CommandPtr App::getSaveMomCmd()
+CommandPtr App::getSaveMemCmd()
 {
     return CommandPtr(new SaveMomentoCmd(this, m_Root));
 }
 
-CommandPtr App::getDrawMomCmd()
+CommandPtr App::getDrawMemCmd()
 {
     return CommandPtr(new DrawMomentoCmd(this, m_pDrawer));
 }
