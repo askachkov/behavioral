@@ -1,3 +1,0 @@
-/home/alex/private/lessons/behavioral/build/CMakeFiles/rebuild_cache.dir
-/home/alex/private/lessons/behavioral/build/CMakeFiles/beh_app.dir
-/home/alex/private/lessons/behavioral/build/CMakeFiles/edit_cache.dir

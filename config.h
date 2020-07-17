@@ -10,6 +10,9 @@ class FileReader
     std::fstream m_File;
 public:
     virtual ~FileReader();
+    std::map<std::string, std::string> getData();
+
+protected:
     virtual void open();
     virtual std::pair<std::string, std::string> read();
     virtual void close();
@@ -17,7 +20,7 @@ public:
 
 class JsonFileReader: public FileReader
 {
-public:
+protected:
     virtual std::pair<std::string, std::string> read();
 };
 

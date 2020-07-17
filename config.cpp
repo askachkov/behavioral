@@ -5,6 +5,23 @@ FileReader::~FileReader()
 
 }
 
+std::map<std::string, std::string> FileReader::getData()
+{
+    std::map<std::string, std::string> ma;
+    open();
+    std::pair<std::string,std::string> res;
+    do {
+        res = read();
+        if ( res.first.empty() ){
+            close();
+            return ma;
+        } else {
+            ma.insert(res);
+        }
+    } while ( true );
+    return ma;
+}
+
 void FileReader::open()
 {
     m_File.open("../config.cfg");
@@ -28,17 +45,9 @@ Config::Config()
 
 void Config::init(ReaderPtr r)
 {
-    r->open();
-    std::pair<std::string,std::string> res;
-    do {
-        res = r->read();
-        if ( res.first.empty() ){
-            r->close();
-            return;
-        } else {
-            instance().set(res.first, res.second);
-        }
-    } while ( true );
+    for ( auto p : r->getData() ){
+        Config::instance().set(p.first, p.second);
+    }
 }
 
 std::pair<std::string, std::string> JsonFileReader::read()
